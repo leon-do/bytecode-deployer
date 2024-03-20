@@ -1,9 +1,20 @@
-<input
+<code>Bytecode: </code
+><input
   id="bytecode"
-  value="0x604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3"
+  placeholder="0x604580600e600039806000f350fe7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3"
   style="width: 50%"
 />
-<button onClick="sign()">Deploy Bytecode</button>
+<br />
+<code>To Address: </code
+><input
+  id="to"
+  placeholder="0xdD4c825203f97984e7867F11eeCc813A036089D1"
+  style="width: 50%"
+/>
+<br />
+<code>Value: </code><input id="value" placeholder="0" style="width: 50%" />
+<br />
+<button onClick="sign()">Send</button>
 
 <script
   src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
@@ -15,9 +26,16 @@
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
-    const response = await signer.sendTransaction({
-      data: document.getElementById("bytecode").value,
-    });
+    if (document.getElementById("bytecode").value) console.log("SDFDF");
+    const tx = {};
+    if (document.getElementById("bytecode").value)
+      tx.data = document.getElementById("bytecode").value;
+    if (document.getElementById("to").value)
+      tx.to = document.getElementById("to").value;
+    if (document.getElementById("value").value)
+      tx.value = document.getElementById("value").value;
+    console.log(tx);
+    const response = await signer.sendTransaction(tx);
     console.log(response);
   }
 </script>
