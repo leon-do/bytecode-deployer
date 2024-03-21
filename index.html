@@ -26,7 +26,7 @@
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
-    if (document.getElementById("bytecode").value) console.log("SDFDF");
+    if (document.getElementById("bytecode").value);
     const tx = {};
     if (document.getElementById("bytecode").value)
       tx.data = document.getElementById("bytecode").value;
